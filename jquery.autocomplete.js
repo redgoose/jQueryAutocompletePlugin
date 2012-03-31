@@ -360,6 +360,17 @@ $.Autocompleter = function(input, options) {
 		if (!options.matchCase)
 			term = term.toLowerCase();
 		var data = cache.load(term);
+
+        // always display option
+		if (options.alwaysDisplayItem) {
+			var row = {
+				data: options.alwaysDisplayItem,
+				value: options.alwaysDisplayItem.text,
+				result: options.alwaysDisplayItem.text
+			};
+			data.push(row);
+		}
+
 		// recieve the cached data
 		if (data && data.length) {
 			success(term, data);
